@@ -1,7 +1,12 @@
 package com.pluralsight;
+/**
+This was written by Ezra Williams
+This code is built to print a shopping list
+ */
 
 public class ShoppingList {
     public static void main(String[] args) {
+        // This is my shopping list:
         System.out.println("Item 1");
         System.out.println("Item 2");
         System.out.println("Item 3");
