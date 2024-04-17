@@ -7,6 +7,8 @@ public class PersonDriver {
                 18, "123 ABC Lane",123456);
         person1.setAddress("234 Candy Lane");
         person1.setAge(25);
+        person1.work(5);
+        person1.eat();
         System.out.println("Your name is "+person1.getName()+"\nYour address is "
         +person1.getAddress()+"\nYour age is "+person1.getAge()+"\nYour social is "
         +person1.getSocial());

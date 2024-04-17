@@ -14,6 +14,7 @@ public class Person {
     private int age;
     private String address;
     private long social;
+    private int energy;
 
     /*
     Scanner scanner = new Scanner(System.in); That second scanner is a Constructor
@@ -29,6 +30,7 @@ public class Person {
         this.age=age;
         this.address=address;
         this.social=social;
+        this.energy=100;
     }
 
     /*How will we access our private variables:
@@ -40,7 +42,12 @@ public class Person {
         this.name=name;
     }
     public void setAge(int age){
-        this.age=age;
+        if (age<1 || age> 130){
+            System.out.println("Invalid age");
+        }else {
+            this.age=age;
+        }
+
     }
 
     public void setAddress(String address){
@@ -62,5 +69,15 @@ public class Person {
     }
     public long getSocial(){
         return social;
+    }
+
+    public void work(int hours) {
+        this.energy -= (hours * 10);
+    }
+    public void sleep(int hours) {
+        this.energy += (hours * 10);
+    }
+    public void eat() {
+        this.energy += 20;
     }
 }

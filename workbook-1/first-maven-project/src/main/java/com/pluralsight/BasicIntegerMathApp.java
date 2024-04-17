@@ -5,15 +5,23 @@ public class BasicIntegerMathApp {
         int a = 10;
         int b = 3;
         int result;
-        result = a + b;
-        System.out.println(result); // displays 13
-        result = a - b;
-        System.out.println(result); // displays 7
-        result = a * b;
-        System.out.println(result); // displays 30
-        result = a / b;
-        System.out.println(result); // displays 3
-        result = a % b;
-        System.out.println(result); // displays 1
+       calc(a,b,'+');
+        calc(a,b,'-');
+        calc(a,b,'*');
+        calc(a,b,'/');
+    }
+
+    public static void calc(int num1, int num2, char calculation){
+        int result=0;
+        if (calculation == '+') {
+            result= num1+num2;
+        } else if (calculation == '-') {
+            result= num1-num2;
+        } else if (calculation == '*') {
+            result= num1*num2;
+        } else if (calculation == '/') {
+            result= num1/num2;
+        }
+        System.out.println(result);
     }
 }
