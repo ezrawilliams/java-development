@@ -24,6 +24,35 @@ public class LearningArrays {
         for (int i = 0; i < nums.length; i++) {
             System.out.println(nums[i]);
         }
+
+        String[] words = new String[5];
+        for (int i = 0; i < words.length; i++) {
+            System.out.print(words[i] + " ");
+        }
+        System.out.println();
+        //Enhanced for loop:
+        String[] schools = {"Calliet", "Cary", "Skyline",
+                "SFASU", "TAMU"};
+        for (String school : schools) {
+            System.out.println(school);
+        }
+
+        displayNumbers(nums2);
+        int[] nums3 = getNumbers();
+    }
+
+    public static void displayNumbers(int[] nums)
+    {
+        for (int i = 0; i < nums.length; i++) {
+            System.out.print(nums[i]+ " ");
+        }
+        System.out.println();
+    }
+
+    public static int[] getNumbers()
+    {
+        int[] nums = {63, 65, 60, 53, 58, 37, 35, 31};
+        return nums;
     }
 
 }
