@@ -40,6 +40,12 @@ public class Student {
         this.address=address;
     }
 
+    public Student(String firstName, String middleName, String lastName){
+        this.firstName=firstName;
+        this.middleName=middleName;
+        this.lastName=lastName;
+    }
+
     /*
     Getters - accessor methods - they allow us to get access to the values of those private variables
     Setters - mutator methods - they allow us to change the value of those private variables
