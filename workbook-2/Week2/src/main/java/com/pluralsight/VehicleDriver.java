@@ -7,8 +7,9 @@ public class VehicleDriver {
         Vehicle[] vehicles = new Vehicle[20];
         Scanner scanner = new Scanner(System.in);
         int counter=6;
-        vehicles[0] = new Vehicle(101121,"Ford Explorer","Red",
+        Vehicle vehicle1 = new Vehicle(101121,"Ford Explorer","Red",
                 45000,13500);
+        vehicles[0] = vehicle1;
         vehicles[1] = new Vehicle(101122,"Toyota Camry","Blue",
                 60000,11000);
         vehicles[2] = new Vehicle(101123,"Chevrolet Malibu","Black",
@@ -30,7 +31,7 @@ public class VehicleDriver {
         System.out.println(" 6 - Quit");
         System.out.println("Enter your command: ");
         int command = scanner.nextInt();
-      //  while (command != 6) {
+      while (command != 6) {
             switch (command) {
                 case 1:
                     listAllVehicles(vehicles);
@@ -43,7 +44,9 @@ public class VehicleDriver {
                     break;
                 case 6:
                     return;
-          //  }
+            }
+          System.out.println("Enter your command: ");
+          command = scanner.nextInt();
         }
     }
 
@@ -58,7 +61,7 @@ public class VehicleDriver {
 
     private static void findVehiclesByMakeModel(Vehicle[] vehicles, String make) {
         for (Vehicle vehicle: vehicles){
-            if (vehicle.getMakeModel().equals(make)){
+            if ((vehicle !=null) && (vehicle.getMakeModel().equals(make))){
                 System.out.println(vehicle);
             }
         }
