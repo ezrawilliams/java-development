@@ -33,6 +33,9 @@ public class Customer {
     }
 
     public void setId(int id) {
+        if (id > 1000){
+            throw new IllegalArgumentException("Id must be less than 1000");
+        }
         this.id = id;
     }
 
