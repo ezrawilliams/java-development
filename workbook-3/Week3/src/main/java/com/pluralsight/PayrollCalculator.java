@@ -19,6 +19,8 @@ public class PayrollCalculator {
                 double pay = employee.getGrossPay();
                 System.out.printf("%d %s %.2f\n", employee.getEmployeeID(),
                         employee.getName(),pay);
+                fr.close();
+                br.close();
             }
         } catch (IOException e){
             e.printStackTrace();
