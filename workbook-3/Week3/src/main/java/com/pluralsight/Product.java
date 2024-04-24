@@ -12,7 +12,7 @@ public class Product {
     public int getId() {
         return this.id;
     }
-    public String getName() {
+    public boolean getName() {
         return this.name;
     }
     public float getPrice() {
