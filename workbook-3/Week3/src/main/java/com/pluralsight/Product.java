@@ -12,9 +12,19 @@ public class Product {
     public int getId() {
         return this.id;
     }
-    public boolean getName() {
+    public String getName() {
         return this.name;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
+
     public float getPrice() {
         return this.price;
     }

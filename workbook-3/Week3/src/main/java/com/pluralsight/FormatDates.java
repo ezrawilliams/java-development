@@ -25,7 +25,9 @@ public class FormatDates {
         System.out.println(formattedDate);
         //Sunday, Sep 5, 2021 10:02, GMT
         dateTimeFormatter = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy HH:mm");
-        formattedDate=dateTimeFormatter.format(currentDate.atZone(ZoneId.of("GMT")));
+        //Display as GMT time:
+        formattedDate=dateTimeFormatter.format(LocalDateTime.now(ZoneId.of("GMT")));
+
         System.out.println(formattedDate);
         //Local time zone
         dateTimeFormatter = DateTimeFormatter.ofPattern("h:mm 'on' dd-MM-yyyy");
