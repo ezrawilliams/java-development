@@ -59,4 +59,19 @@ public class Room {
         }
         else return false;
     }
+
+    public void checkIn(){
+        occupied = true;
+        dirty=true;
+    }
+
+    public void checkOut(){
+        occupied = false;
+       // dirty=false;
+        cleanRoom();
+    }
+
+    public void cleanRoom(){
+        dirty=false;
+    }
 }

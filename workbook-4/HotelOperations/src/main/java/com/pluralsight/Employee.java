@@ -6,6 +6,10 @@ public class Employee {
     private String department;
     private double payRate;
     private double hoursWorked;
+    private double punchInTime;
+    private double punchOutTime;
+
+    public Employee() {}
 
     public Employee(int employeeId, String name, String department, double payRate, double hoursWorked) {
         this.employeeId = employeeId;
@@ -76,4 +80,20 @@ public class Employee {
         }
         return 0;// methods only return once.
     }
+
+   /* public void punchIn(double time){
+        punchInTime=time;
+    }
+
+    public void punchOut(double timeOut){
+        punchOutTime=timeOut;
+        hoursWorked += (punchOutTime - punchInTime);
+    }*/
+
+    public void punchTimeCard(double timeIn, double timeOut){
+        punchInTime = timeIn;
+        punchOutTime = timeOut;
+        hoursWorked += (punchOutTime-punchInTime);
+    }
+
 }
