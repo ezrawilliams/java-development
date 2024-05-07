@@ -9,6 +9,12 @@ public class Employee {
     private double punchInTime;
     private double punchOutTime;
 
+    /*
+    Added a default constructor so that I can calculate hoursWorked and
+    add to the employees hours worked and use setters instead of the
+    all argument constructor.
+    Java actually adds default values when you create the class variables
+     */
     public Employee() {}
 
     public Employee(int employeeId, String name, String department, double payRate, double hoursWorked) {
@@ -96,4 +102,11 @@ public class Employee {
         hoursWorked += (punchOutTime-punchInTime);
     }
 
+    public double getPunchInTime() {
+        return punchInTime;
+    }
+
+    public double getPunchOutTime(){
+        return punchOutTime;
+    }
 }
