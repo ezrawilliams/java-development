@@ -11,6 +11,7 @@ public class Restaurant {
                 false,false,"Red", true, 4.99);
         Food wings = new Food("Hot Wings", 1090, true, true, "Light Red", false, 10.99);
         Food[] foods = {mango, chips, strawberry, wings};
+        Food pasta = new Food("Pasta");
 
 
     }

@@ -1,22 +1,22 @@
 package com.pluralsight;
 
 public class Reservation {
-    private String roomType;
     private int numberOfNights;
     private boolean weekend;
+    Room room;
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 
     public Reservation(){
-        roomType = null;
         numberOfNights = 0;
         weekend = false;
-    }
-
-    public String getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
+        room = null;
     }
 
     public int getNumberOfNights() {
@@ -37,11 +37,11 @@ public class Reservation {
 
     //Derived getter
     public double getPrice(){
-        if (roomType.equals("king")){
+        if (room.getRoomType().equals("king")){
             if (weekend)
                 return 139.00*1.10;
             return 139.00;
-        } else if (roomType.equals("double")){
+        } else if (room.getRoomType().equals("double")){
             if (weekend)
                 return 124.00*1.10;
             return 124.00;

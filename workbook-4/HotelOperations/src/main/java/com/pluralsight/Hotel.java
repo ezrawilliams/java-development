@@ -1,33 +1,60 @@
 package com.pluralsight;
 
-import java.util.Scanner;
-
 public class Hotel {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Employee employee1 = new Employee();
-        employee1.setHoursWorked(40);
-        System.out.println("What time did you start work?");
-        double startTime = scanner.nextDouble();
-        System.out.println("What time did you finish work?");
-        double finishTime = scanner.nextDouble();
-        employee1.punchTimeCard(startTime,finishTime);
-        employee1.setEmployeeId(1);
-        employee1.setDepartment("IT");
-        employee1.setPayRate(20.00);
-                /*new Employee(1,
-                "Ezra Williams", "IT",
-                20.00, 45);*/
-        System.out.println(employee1.getHoursWorked());
-        System.out.println(employee1.getOvertimeHours());
-        System.out.println(employee1.getTotalPay());
-        System.out.println(employee1.getRegularHours());
+    private String name;
+    private int numberOfSuites;
+    private int numberOfRooms;
+    private int bookedSuites;
+    private int bookedBasicRooms;
 
-        Reservation res1 = new Reservation();
-        res1.setRoomType("double");
-        res1.setWeekend(true);
-        res1.setNumberOfNights(3);
-        System.out.println(res1.getPrice());
-        System.out.println(res1.getReservationTotal());
+    public Hotel(int numberOfSuites, int numberOfRooms) {
+        this.numberOfSuites = numberOfSuites;
+        this.numberOfRooms = numberOfRooms;
     }
+
+    public Hotel(String name,
+                 int numberOfSuites,
+                 int numberOfRooms, int bookedSuites,
+                 int bookedBasicRooms) {
+        this.name = name;
+        this.numberOfSuites = numberOfSuites;
+        this.numberOfRooms = numberOfRooms;
+        this.bookedSuites=bookedSuites;
+        this.bookedBasicRooms = bookedBasicRooms;
+    }
+
+    public boolean bookRoom(int numberOfRooms, boolean isSuite){
+        // Check if the requested room is a suite
+        if (isSuite) {
+            // Check if there are available suites and if the requested number of rooms can be accommodated
+            if ((numberOfSuites > bookedSuites) &&
+                    (numberOfRooms <= (numberOfSuites - bookedSuites))) {
+                // Book the suite room(s) and update the booked suite count
+                bookedSuites += numberOfRooms;
+                return true; // Return true indicating successful booking
+            } else {
+                return false; // Return false indicating unable to book the room(s)
+            }
+        } else { // If the requested room is not a suite
+            // Check if there are available basic rooms and if the requested number of rooms can be accommodated
+            if (numberOfRooms <= (numberOfRooms - bookedBasicRooms)) {
+                // Book the basic room(s) and update the booked basic room count
+                bookedBasicRooms += numberOfRooms;
+                return true; // Return true indicating successful booking
+            } else {
+                return false; // Return false indicating unable to book the room(s)
+            }
+        }
+
+    }
+
+    public int getAvailableSuites(){
+        return numberOfSuites - bookedSuites;
+    }
+
+    public int getAvailableRooms(){
+        return  numberOfRooms - bookedBasicRooms;
+    }
+
+
 }

@@ -37,6 +37,17 @@ public class Food {
         this.price = price;
     }
 
+    public Food(){}
+
+    public Food(String name){
+        this.name=name;
+    }
+
+    public Food(String name, int calories){
+        this.name=name;
+        this.calories=calories;
+    }
+
     public String getName() {
         return name;
     }

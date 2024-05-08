@@ -2,22 +2,44 @@ package com.pluralsight;
 
 public class Room {
     private int numberOfBeds;
-    private double price;
+   // private double price;
     private boolean occupied;
     private boolean dirty;
 
-    public Room(int numberOfBeds, double price, boolean occupied, boolean dirty) {
+    @Override
+    public String toString() {
+        return "Room{" +
+                "numberOfBeds=" + numberOfBeds +
+                ", occupied=" + occupied +
+                ", dirty=" + dirty +
+                ", roomType='" + roomType + '\'' +
+                '}';
+    }
+
+    private String roomType;
+
+    public Room(int numberOfBeds, boolean occupied, boolean dirty, String roomType) {
         this.numberOfBeds = numberOfBeds;
-        this.price = price;
+      //  this.price = price;
         this.occupied = occupied;
         this.dirty = dirty;
+        this.roomType = roomType;
+    }
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
 
     public Room(){
         this.numberOfBeds = 0;
-        this.price = 0;
+        //this.price = 0;
         this.occupied = false;
         this.dirty=false;
+        this.roomType = "";
     }
 
     public int getNumberOfBeds() {
@@ -28,13 +50,13 @@ public class Room {
         this.numberOfBeds = numberOfBeds;
     }
 
-    public double getPrice() {
+   /* public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
         this.price = price;
-    }
+    }*/
 
     public boolean isOccupied() {
         return occupied;

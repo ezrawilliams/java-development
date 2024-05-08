@@ -22,13 +22,28 @@ public class Score {
     private double wins;
     private boolean winOrLose;
 
-    public Score(String playerName, int playerScore, String gameName, double losses, double wins, boolean winOrLose) {
+    public void setPlayerName(String playerName) {
         this.playerName = playerName;
-        this.playerScore = playerScore;
+    }
+
+    public void setGameName(String gameName) {
         this.gameName = gameName;
-        this.losses = losses;
-        this.wins = wins;
-        this.winOrLose = winOrLose;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public int getPlayerScore() {
+        return playerScore;
+    }
+
+    public String getGameName() {
+        return gameName;
+    }
+
+    public boolean isWinOrLose() {
+        return winOrLose;
     }
 
     public Score(){
@@ -39,6 +54,13 @@ public class Score {
         this.winOrLose = false;
     }
 
+    public double getWins(){
+        return wins;
+    }
+
+    public double getLosses(){
+        return  losses;
+    }
 
     public void win(){
         wins++;
