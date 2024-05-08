@@ -12,12 +12,12 @@ public class CarDriver {
         Image avater = icon.getImage();
         Character character = new Character("Ant Man", 25,avater);
 
-        Car car1 = new Car(make, model,character);
+       /* Car car1 = new Car(make, model,character);
         System.out.println(car1.getSpeed());
         car1.accelerate(10);
         car1.accelerate(25);
         System.out.println(car1.getSpeed());
         car1.brake(10);
-        System.out.println(car1.getSpeed());
+        System.out.println(car1.getSpeed());*/
     }
 }
