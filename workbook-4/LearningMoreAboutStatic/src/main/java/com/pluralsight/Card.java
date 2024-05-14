@@ -53,4 +53,9 @@ public class Card {
     public void flip(){
         isFaceUp=!isFaceUp;
     }
+
+   /* public void setPointValue (int value){
+        this.value=value;
+    }*/
+
 }
