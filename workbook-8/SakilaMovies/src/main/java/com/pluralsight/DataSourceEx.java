@@ -2,10 +2,7 @@ package com.pluralsight;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Scanner;
 
 public class DataSourceEx {
@@ -17,7 +14,11 @@ public class DataSourceEx {
         dataSource.setUrl("jdbc:mysql://localhost:3307/sakila");
         dataSource.setUsername("root");
         dataSource.setPassword("password");
-        actorLastName(dataSource);
+        //actorLastName(dataSource);
+        //insertIntoDirect(dataSource);
+        //insertIntoWithGeneratredKeys(dataSource);
+        //updateRecord(dataSource);
+        deleteRecord(dataSource);
     }
 
     public static void actorLastName(BasicDataSource dataSource){
@@ -84,5 +85,71 @@ public class DataSourceEx {
         } catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    public static void insertIntoDirect(BasicDataSource dataSource){
+        try (Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO " +
+                "country (country) VALUES (?);");){
+            //set the parameter:
+            preparedStatement.setString(1, "Eritrea");
+            //exectute the query
+            int rows = preparedStatement.executeUpdate(); //returns number of rows affected
+            //confirm the update
+            System.out.printf("Rows updated %d\n", rows);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void insertIntoWithGeneratredKeys(BasicDataSource dataSource){
+        try(Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO " +
+                "country (country) values (?);", Statement.RETURN_GENERATED_KEYS);){
+            preparedStatement.setString(1, "Mongolia");
+            int rows = preparedStatement.executeUpdate();
+            System.out.printf("Rows updated %d\n", rows);
+
+            try (ResultSet keys = preparedStatement.getGeneratedKeys()){
+                while (keys.next()){
+                    System.out.printf("%d key was added\n", keys.getLong(1));
+                }
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateRecord(BasicDataSource dataSource){
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement
+                     ("UPDATE film_text SET description = ? WHERE film_id = ?");){
+            preparedStatement.setString(1, "Apache Devine is an Apache Project that " +
+                    "delivers messages to different brokers without care as to what technology it is");
+            preparedStatement.setLong(2, 31);
+
+            int rows = preparedStatement.executeUpdate();
+
+            System.out.printf("Rows udated %d\n", rows);
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteRecord(BasicDataSource dataSource){
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement
+                     ("DELETE FROM country WHERE country = ?");){
+            preparedStatement.setString(1, "Mongolia");
+
+            int rows = preparedStatement.executeUpdate();
+
+            System.out.printf("Rows deleted %d\n", rows);
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
     }
 }
