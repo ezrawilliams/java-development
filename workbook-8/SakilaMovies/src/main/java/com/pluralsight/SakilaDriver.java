@@ -19,5 +19,6 @@ public class SakilaDriver {
 
         List<Film> movies = dataManager.actorMovies();
         movies.forEach(System.out::println);
+
     }
 }

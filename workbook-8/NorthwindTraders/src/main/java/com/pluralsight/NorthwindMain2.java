@@ -15,7 +15,7 @@ public class NorthwindMain2 {
             dataSource.setUsername("root");
             dataSource.setPassword("password");
 
-            //Home screen:
+            /*Home screen:
             Scanner input = new Scanner(System.in);
             int option;
             System.out.println("What do you want to do? \n\t 1) Display all products" +
@@ -32,7 +32,23 @@ public class NorthwindMain2 {
             }
             else if (option == 0) {
                 System.exit(0);
-            }
+            }*/
+            //Create a connection
+            Connection conn = dataSource.getConnection();
+
+            // create the query, but surround it with { } and // use a ? for parameters
+            String query = "{CALL CustOrderHist(?)}";
+            // Create the CallableStatement
+            CallableStatement stmt = conn.prepareCall(query);
+            // Set any parameters
+            stmt.setString(1, "EASTC");
+            // Execute the query
+            ResultSet resultSet = stmt.executeQuery();
+            // Process the returned values
+            while (resultSet.next()) {
+                System.out.printf("%s - %d\n",
+                        resultSet.getString("ProductName"),
+                        resultSet.getInt("TOTAL")); }
         } catch (SQLException s){
             s.printStackTrace();
         }

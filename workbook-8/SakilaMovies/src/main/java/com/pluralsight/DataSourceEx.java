@@ -18,7 +18,8 @@ public class DataSourceEx {
         //insertIntoDirect(dataSource);
         //insertIntoWithGeneratredKeys(dataSource);
         //updateRecord(dataSource);
-        deleteRecord(dataSource);
+        //deleteRecord(dataSource);
+        createTable(dataSource);
     }
 
     public static void actorLastName(BasicDataSource dataSource){
@@ -151,5 +152,23 @@ public class DataSourceEx {
             e.printStackTrace();
         }
 
+    }
+
+    public static void createTable(BasicDataSource dataSource) {
+        // Create the connection and prepared statement
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement =
+                     connection.prepareStatement( "CREATE TABLE film_reviews " +
+                             "(" + "movie_review_id bigint primary key, " +
+                             "news_source varchar(500) not null, " +
+                             "stars int not null, " + "reviewer varchar(200), " +
+                             "film_id smallint unsigned not null, " +
+                             "FOREIGN KEY (film_id) REFERENCES " +
+                             "film(film_id)) ENGINE=INNODB;"); ) {
+            // execute the prepared statement
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
