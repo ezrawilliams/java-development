@@ -1,4 +1,4 @@
-package com.pluralsight;
+package com.pluralsight.model;
 
 /*
 This class is actually a class that will be used to create Java Beans - objects:

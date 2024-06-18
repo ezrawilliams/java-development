@@ -1,13 +1,19 @@
 package com.pluralsight.service;
 
 import com.pluralsight.dao.RegistrationDAO;
+import com.pluralsight.model.Product;
 import com.pluralsight.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class RegistrationService {
     private final RegistrationDAO registrationDAO;
+
+    @Autowired
+  //  @Qualifier("drink")
+    private Product drink;
 
     // Autowired tells Spring to automatically inject a
     // object into this constructor when a RegistrationService
