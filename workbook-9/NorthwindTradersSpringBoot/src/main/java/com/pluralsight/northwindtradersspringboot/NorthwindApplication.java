@@ -53,7 +53,7 @@ public class NorthwindApplication implements CommandLineRunner {
                     simpleProductDAO.delete(id2);
                     break;
                 case 4:
-                    Product product1 = new Product(2, "ketchup","Groceries",5.99);
+                    Product product1 = new Product(2, "Chang2","Beverages",20.00);
                     simpleProductDAO.update(product1);
                     System.out.println(simpleProductDAO.getAll());
                     break;

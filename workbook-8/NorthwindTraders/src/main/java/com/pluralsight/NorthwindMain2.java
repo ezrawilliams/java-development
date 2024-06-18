@@ -84,7 +84,8 @@ public class NorthwindMain2 {
     private static void displayAllCategories(BasicDataSource dataSource) {
         String query = "SELECT categoryid, categoryname FROM categories ORDER BY categoryid ";
         try (
-                Connection connection = dataSource.getConnection();PreparedStatement statement = connection.prepareStatement(query);){
+                Connection connection = dataSource.getConnection();
+                PreparedStatement statement = connection.prepareStatement(query);){
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     System.out.println(resultSet.getInt(1) + "\t" +

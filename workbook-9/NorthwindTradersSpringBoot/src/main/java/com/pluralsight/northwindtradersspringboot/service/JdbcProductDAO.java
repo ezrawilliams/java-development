@@ -22,7 +22,22 @@ public class JdbcProductDAO implements ProductDAO {
     }
     @Override
     public int add(Product product) {
-        return 0;
+        int id = product.getProductId();
+        String name = product.getName();
+        double price = product.getPrice();
+        String query = "INSERT INTO products (ProductID, ProductName, UnitPrice) VALUES (?, ?, " +
+                "?);";
+        try (Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(query);){
+                statement.setInt(1, id);
+                statement.setString(2, name);
+                statement.setDouble(3, price);
+                int rows = statement.executeUpdate();
+            System.out.println("Rows updated "+rows);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return id;
     }
 
     @Override
@@ -52,16 +67,59 @@ public class JdbcProductDAO implements ProductDAO {
 
     @Override
     public boolean delete(int id) {
+        String query = "DELETE FROM products WHERE ProductID = ?;";
+        try (Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(query);){
+            statement.setInt(1, id);
+            int rows = statement.executeUpdate();
+            System.out.println("Rows deleted "+rows);
+            if (rows>0){
+                return true;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
     public boolean update(Product product) {
+        String query = "UPDATE products SET ProductName = ?, UnitPrice = ? " +
+                "WHERE ProductID = ?";
+        try (Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(query);){
+            statement.setString(1, product.getName());
+            statement.setDouble(2, product.getPrice());
+            statement.setInt(3, product.getProductId());
+            int rows = statement.executeUpdate();
+            if (rows>0){
+                return true;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
     public Product search(int id) {
-        return null;
+        Product product = null;
+        String query = "SELECT ProductID, ProductName, UnitPrice FROM products WHERE" +
+                " ProductID=?;";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);){
+            statement.setInt(1, id);
+            try (ResultSet resultSet = statement.executeQuery()){
+                if(resultSet.next()){
+                    int productId = resultSet.getInt("ProductID");
+                    String productName = resultSet.getString("ProductName");
+                    double price = resultSet.getDouble("UnitPrice");
+                    product = new Product(productId, productName, price);
+                }
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return product;
     }
 }
